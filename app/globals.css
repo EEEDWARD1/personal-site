@@ -1,9 +1,28 @@
 @import "tailwindcss";
 
-:root {
-  --background: #0b1021;
-  --foreground: #e7ecff;
-  --wave-primary: #4973ff;
-  --wave-secondary: #8ea2ff;
-  --wave-tertiary: #283ba3;
+body{
+  background-color: #1f1f1f;
+  color: #e4e4e7;       /* adds breathing room on sides */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; 
+}
+h1 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f5f5f5;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+p {
+  font-size: 1rem;
+  color: #a1a1aa; /* zinc-400 — muted, readable */
+  line-height: 1.75;
+  max-width: 65ch;
+}
+hr {
+  border: none;
+  border-top: 1px solid #3f3f46;
+  margin: 0.5rem 0;
 }
