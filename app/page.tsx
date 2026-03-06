@@ -1,14 +1,31 @@
+import Card from "../components/ui/card"
+
 export default function Home() {
   return (
-    <main className="relative z-10 min-h-screen overflow-hidden text-white">
-      <div className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4 text-center">
-        <p className="text-sm uppercase tracking-[0.35em] text-sky-200/70">
-          Ambient waves
-        </p>
-        <h1 className="mt-4 max-w-xl text-4xl font-semibold leading-tight text-white/90">
-          A calm animated backdrop without mouse tracking.
-        </h1>
-      </div>
+    <main className="flex flex-col gap-4">
+      <Card>
+        <div>
+          <h1>About me</h1>
+          <hr/>
+          <img 
+            src="myself.png" 
+            alt="Eduard" 
+            className="float-right ml-4 mb-2 w-28 h-28 rounded-full object-cover"
+          />
+          <p>Hi, I'm Eduard, a final year Computer Science student from the United Kingdom.</p>
+          <br></br>
+            <p>Since I've started programming, I've developed an addiction, whether it's working in Python, Web, Java. I'm constantly exploring new ways to solve problems and bring ideas to life.</p>
+        </div>
+      </Card>
+      <Card>
+        <h1>Projects</h1>
+      </Card>
+      <Card>
+        <h1>Blog</h1>
+      </Card>
+      <Card>
+        <h1>Contacts</h1>
+      </Card>
     </main>
   );
 }
