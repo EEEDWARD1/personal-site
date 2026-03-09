@@ -1,6 +1,9 @@
 import Card from "../components/ui/card"
+import BlogCard from "../components/BlogCard"
+import { getPosts } from "../lib/api"
 
-export default function Home() {
+export default async function Home() {
+  const posts = await getPosts();
   return (
     <main className="flex flex-col gap-4">
       <Card>
@@ -20,9 +23,7 @@ export default function Home() {
       <Card>
         <h1>Projects</h1>
       </Card>
-      <Card>
-        <h1>Blog</h1>
-      </Card>
+      <BlogCard posts={posts} />
       <Card>
         <h1>Contacts</h1>
       </Card>

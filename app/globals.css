@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 body{
-  background-color: #1f1f1f;
+  background: linear-gradient(135deg, #0a0a0a 0%, #0d2137 40%, #0a3d2e 100%);
+  min-height: 100vh;
   color: #e4e4e7;       /* adds breathing room on sides */
   display: flex;
   flex-direction: column;
