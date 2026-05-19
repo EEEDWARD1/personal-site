@@ -1,0 +1,39 @@
+import BlogPostCard from "@/components/public/BlogPostCard";
+import StatusMessage from "@/components/public/StatusMessage";
+import { publicApi } from "@/lib/api";
+
+export default async function BlogPage() {
+  const result = await publicApi.blog().then(
+    (posts) => ({ posts, error: false }),
+    () => ({ posts: [], error: true }),
+  );
+
+  if (result.error) {
+    return (
+      <StatusMessage
+        title="Blog unavailable"
+        message="The blog API could not be reached. Please try again shortly."
+      />
+    );
+  }
+
+  return (
+    <main className="grid gap-5">
+      <header>
+        <h1 className="text-4xl">Blog</h1>
+        <p className="mt-3 max-w-2xl">
+          Notes on software, infrastructure, learning, and projects in motion.
+        </p>
+      </header>
+      {result.posts.length ? (
+        <div className="grid gap-4">
+          {result.posts.map((post) => (
+            <BlogPostCard key={post.id} post={post} />
+          ))}
+        </div>
+      ) : (
+        <StatusMessage title="No posts yet" message="Published posts will appear here." />
+      )}
+    </main>
+  );
+}
