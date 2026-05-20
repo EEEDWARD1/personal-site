@@ -1,11 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import Card from "@/components/ui/card";
+import CardCarousel from "@/components/ui/card-carousel";
 import ScrollGlowLink from "@/components/ui/scroll-glow-link";
 import SectionHeader from "@/components/ui/section-header";
 import BlogPostCard from "@/components/public/BlogPostCard";
 import FreelanceCard from "@/components/public/FreelanceCard";
-import ProjectCard from "@/components/public/ProjectCard";
+import ProjectCarousel from "@/components/public/ProjectCarousel";
 import StatusMessage from "@/components/public/StatusMessage";
 import { publicApi } from "@/lib/api";
 
@@ -93,11 +94,7 @@ export default async function Home() {
           </Link>
         </div>
         {projects.length ? (
-          <div className="grid gap-4 md:grid-cols-3">
-            {projects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
-            ))}
-          </div>
+          <ProjectCarousel projects={projects} />
         ) : (
           <StatusMessage
             title="Projects are unavailable"
@@ -116,11 +113,11 @@ export default async function Home() {
           </Link>
         </div>
         {posts.length ? (
-          <div className="grid gap-4 md:grid-cols-3">
+          <CardCarousel className="desktop-grid-3" label="Latest writing">
             {posts.map((post) => (
               <BlogPostCard key={post.id} post={post} />
             ))}
-          </div>
+          </CardCarousel>
         ) : (
           <StatusMessage
             title="Blog posts are unavailable"
@@ -136,11 +133,11 @@ export default async function Home() {
           </p>
         </SectionHeader>
         {freelance.length ? (
-          <div className="grid gap-4 md:grid-cols-2">
+          <CardCarousel className="desktop-grid-2" label="Freelance work">
             {freelance.slice(0, 2).map((work) => (
               <FreelanceCard key={work.id} work={work} />
             ))}
-          </div>
+          </CardCarousel>
         ) : (
           <Card>
             <h3 className="text-xl">Available for selected freelance work</h3>

@@ -155,6 +155,62 @@ a:focus-visible {
     0 14px 32px rgba(15, 118, 110, 0.16);
 }
 
+.freelance-cta-panel h2 {
+  color: #ffffff;
+}
+
+.freelance-cta-panel p {
+  color: #cbd5e1;
+}
+
+.card-carousel-track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 100%;
+  gap: 1rem;
+  width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  padding-bottom: 0.75rem;
+  scroll-padding-inline: 0;
+  scroll-snap-type: inline mandatory;
+  scroll-behavior: smooth;
+  scrollbar-color: rgba(15, 118, 110, 0.45) rgba(255, 255, 255, 0.5);
+  scrollbar-width: thin;
+}
+
+.card-carousel-track article {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .card-carousel-track {
+    grid-auto-columns: initial;
+    grid-auto-flow: row;
+    overflow: visible;
+    padding-bottom: 0;
+    scroll-snap-type: none;
+  }
+
+  .card-carousel-track.desktop-grid-1 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .card-carousel-track.desktop-grid-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .card-carousel-track.desktop-grid-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .card-carousel-track.desktop-grid-lg-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
 .prose-lite {
   color: #374151;
 }

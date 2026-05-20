@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import BackendStatus from "./backend-status";
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,7 +27,8 @@ export default function Nav() {
         >
           Eduard Teodor
         </Link>
-        <div className="sm:hidden">
+        <div className="flex items-center gap-3 sm:hidden">
+          <BackendStatus />
           <button
             type="button"
             className="inline-flex h-10 w-10 items-center justify-center p-0"
@@ -85,6 +87,9 @@ export default function Nav() {
           >
             Admin
           </Link>
+        </li>
+        <li className="hidden px-2 py-2 sm:flex sm:px-0 sm:py-0">
+          <BackendStatus />
         </li>
       </ul>
     </nav>

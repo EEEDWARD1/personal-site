@@ -1,5 +1,6 @@
 import FreelanceCard from "@/components/public/FreelanceCard";
 import Card from "@/components/ui/card";
+import CardCarousel from "@/components/ui/card-carousel";
 import ScrollGlowLink from "@/components/ui/scroll-glow-link";
 import SectionHeader from "@/components/ui/section-header";
 import StatusMessage from "@/components/public/StatusMessage";
@@ -180,11 +181,11 @@ export default async function FreelancePage() {
           </ScrollGlowLink>
         </div>
         {result.entries.length ? (
-          <div className="grid gap-4 md:grid-cols-2">
+          <CardCarousel className="desktop-grid-2" label="Freelance work">
             {result.entries.map((work) => (
               <FreelanceCard key={work.id} work={work} />
             ))}
-          </div>
+          </CardCarousel>
         ) : (
           <StatusMessage
             title="No showcase entries yet"
@@ -193,7 +194,7 @@ export default async function FreelancePage() {
         )}
       </section>
 
-      <section className="rounded-xl border border-slate-200 bg-slate-950 p-5 text-white shadow-sm shadow-slate-300/70 sm:p-6">
+      <section className="freelance-cta-panel rounded-xl border border-slate-200 bg-slate-950 p-5 text-white shadow-sm shadow-slate-300/70 sm:p-6">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h2 className="text-2xl text-white">Have a project in mind?</h2>

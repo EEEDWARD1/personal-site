@@ -1,4 +1,5 @@
 import BlogPostCard from "@/components/public/BlogPostCard";
+import CardCarousel from "@/components/ui/card-carousel";
 import SectionHeader from "@/components/ui/section-header";
 import StatusMessage from "@/components/public/StatusMessage";
 import { publicApi } from "@/lib/api";
@@ -29,11 +30,11 @@ export default async function BlogPage() {
       {result.posts.length ? (
         <section className="grid gap-4" aria-labelledby="posts-list-heading">
           <SectionHeader id="posts-list-heading" title="Latest posts" />
-          <div className="grid gap-4">
+          <CardCarousel className="desktop-grid-1" label="Blog posts">
             {result.posts.map((post) => (
               <BlogPostCard key={post.id} post={post} />
             ))}
-          </div>
+          </CardCarousel>
         </section>
       ) : (
         <StatusMessage title="No posts yet" message="Published posts will appear here." />

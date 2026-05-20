@@ -1,4 +1,5 @@
 import ProjectCard from "@/components/public/ProjectCard";
+import CardCarousel from "@/components/ui/card-carousel";
 import SectionHeader from "@/components/ui/section-header";
 import StatusMessage from "@/components/public/StatusMessage";
 import { publicApi } from "@/lib/api";
@@ -41,9 +42,18 @@ export default async function ProjectsPage({
         </div>
         <a
           href={featured === "true" ? "/projects" : "/projects?featured=true"}
-          className="button shrink-0"
+          className="button shrink-0 gap-2"
+          aria-label={
+            featured === "true"
+              ? "Show all projects"
+              : "Show featured projects only"
+          }
         >
-          {featured === "true" ? "Show all" : "Featured only"}
+          <span>{featured === "true" ? "Show all" : "Featured only"}</span>
+          <span
+            aria-hidden="true"
+            className="h-2 w-2 rotate-45 border-b-2 border-r-2 border-current"
+          />
         </a>
       </header>
       {filtered.length ? (
@@ -52,11 +62,14 @@ export default async function ProjectsPage({
             id="projects-list-heading"
             title={featured === "true" ? "Featured projects" : "All projects"}
           />
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <CardCarousel
+            className="desktop-grid-2 desktop-grid-lg-3"
+            label="Projects"
+          >
             {filtered.map((project) => (
               <ProjectCard key={project.id} project={project} />
             ))}
-          </div>
+          </CardCarousel>
         </section>
       ) : (
         <StatusMessage title="No projects found" message="Try clearing the featured filter." />
