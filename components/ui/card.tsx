@@ -7,7 +7,7 @@ export default function Card({
 }) {
   return (
     <div
-      className={`rounded-md border border-slate-200 bg-white/85 p-5 shadow-lg shadow-slate-200/70 backdrop-blur transition-colors duration-200 hover:border-teal-200 ${className}`}
+      className={`rounded-lg border border-slate-200 bg-white p-5 shadow-sm shadow-slate-200/70 transition duration-200 hover:border-slate-300 hover:shadow-md hover:shadow-slate-200/80 ${className}`}
     >
       {children}
     </div>

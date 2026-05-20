@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Card from "@/components/ui/card";
+import SectionHeader from "@/components/ui/section-header";
 import BlogPostCard from "@/components/public/BlogPostCard";
 import FreelanceCard from "@/components/public/FreelanceCard";
 import ProjectCard from "@/components/public/ProjectCard";
@@ -33,20 +34,28 @@ export default async function Home() {
     freelanceResult.status === "fulfilled" ? freelanceResult.value : [];
 
   return (
-    <main className="flex flex-col gap-8">
+    <main className="flex flex-col gap-10 pb-8">
       <section className="grid gap-6 py-8 lg:grid-cols-[1.4fr_0.8fr] lg:items-center">
         <div>
           <p className="text-sm font-bold uppercase tracking-[0.18em] text-teal-700">
             London, UK
           </p>
-          <h1 className="mt-4 text-4xl font-bold sm:text-6xl">Eduard Teodor</h1>
+          <h1 className="mt-4 text-4xl font-bold sm:text-6xl">
+            Eduard Teodor
+          </h1>
           <p className="mt-5 max-w-2xl text-lg text-slate-700">
             Final-year Computer Science student and software developer building
             full-stack systems with Spring Boot, Next.js, PostgreSQL, Docker,
             and a healthy interest in self-hosting.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
-            <Link href="/projects" className="button border-teal-500 bg-teal-500 text-white hover:bg-teal-400 hover:text-white">
+            <Link
+              href="/freelance"
+              className="button button-navy px-5 py-3 text-base ring-1 ring-slate-950/10"
+            >
+              Looking to work together?
+            </Link>
+            <Link href="/projects" className="button">
               View Projects
             </Link>
             <Link href="/blog" className="button">
@@ -75,10 +84,9 @@ export default async function Home() {
 
       <section className="grid gap-4">
         <div className="flex items-end justify-between gap-4">
-          <div>
-            <h2 className="text-2xl">Featured Projects</h2>
-            <p className="mt-2">Selected builds from the live project API.</p>
-          </div>
+          <SectionHeader title="Featured Projects">
+            <p>Selected builds from the live project API.</p>
+          </SectionHeader>
           <Link href="/projects" className="text-sm font-semibold text-teal-700">
             All projects
           </Link>
@@ -99,10 +107,9 @@ export default async function Home() {
 
       <section className="grid gap-4">
         <div className="flex items-end justify-between gap-4">
-          <div>
-            <h2 className="text-2xl">Latest Writing</h2>
-            <p className="mt-2">Starred posts first, followed by recent notes.</p>
-          </div>
+          <SectionHeader title="Latest Writing">
+            <p>Starred posts first, followed by recent notes.</p>
+          </SectionHeader>
           <Link href="/blog" className="text-sm font-semibold text-teal-700">
             All posts
           </Link>
@@ -122,12 +129,11 @@ export default async function Home() {
       </section>
 
       <section className="grid gap-4">
-        <div>
-          <h2 className="text-2xl">Freelance Work</h2>
+        <SectionHeader title="Freelance Work">
           <p className="mt-2">
             Client projects and hire-me signals pulled from the freelance API.
           </p>
-        </div>
+        </SectionHeader>
         {freelance.length ? (
           <div className="grid gap-4 md:grid-cols-2">
             {freelance.slice(0, 2).map((work) => (
