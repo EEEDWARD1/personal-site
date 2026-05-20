@@ -1,5 +1,8 @@
 const API_BASE =
-  process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8080";
+  process.env.NEXT_PUBLIC_API_URL ??
+  (process.env.NODE_ENV === "production"
+    ? "https://api.eduardteodor.co.uk"
+    : "http://localhost:8080");
 
 export class ApiError extends Error {
   status: number;
