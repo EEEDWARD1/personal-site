@@ -37,14 +37,14 @@ export default async function Home() {
     <main className="flex flex-col gap-10 pb-8">
       <section className="grid gap-6 py-8 lg:grid-cols-[1.4fr_0.8fr] lg:items-center">
         <div>
-          <p className="text-sm font-bold uppercase tracking-[0.18em] text-teal-700">
+          <p className="text-sm font-semibold tracking-normal text-teal-800 sm:text-base">
             London, UK
           </p>
           <h1 className="mt-4 text-4xl font-bold sm:text-6xl">
             Eduard Teodor
           </h1>
           <p className="mt-5 max-w-2xl text-lg text-slate-700">
-            Final-year Computer Science student and software developer building
+            Recent Computer Science graduate and software developer building
             full-stack systems with Spring Boot, Next.js, PostgreSQL, Docker,
             and a healthy interest in self-hosting.
           </p>
