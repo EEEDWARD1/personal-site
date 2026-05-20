@@ -1,6 +1,6 @@
-import Link from "next/link";
 import FreelanceCard from "@/components/public/FreelanceCard";
 import Card from "@/components/ui/card";
+import ScrollGlowLink from "@/components/ui/scroll-glow-link";
 import SectionHeader from "@/components/ui/section-header";
 import StatusMessage from "@/components/public/StatusMessage";
 import { publicApi } from "@/lib/api";
@@ -114,9 +114,12 @@ export default async function FreelancePage() {
             software without ceremony.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <Link href="/contact" className="button button-navy">
+            <ScrollGlowLink
+              href="/contact"
+              className="button button-navy cta-focus-glow"
+            >
               Get in touch
-            </Link>
+            </ScrollGlowLink>
             <a href="#recent-work" className="button">
               View recent work
             </a>
@@ -172,9 +175,9 @@ export default async function FreelancePage() {
           <SectionHeader eyebrow="Showcase" title="Recent work preview">
             <p>Client projects and freelance examples published from the live API.</p>
           </SectionHeader>
-          <Link href="/contact" className="button">
+          <ScrollGlowLink href="/contact" className="button cta-focus-glow">
             Start a conversation
-          </Link>
+          </ScrollGlowLink>
         </div>
         {result.entries.length ? (
           <div className="grid gap-4 md:grid-cols-2">
@@ -199,9 +202,12 @@ export default async function FreelancePage() {
               reliable software without ceremony.
             </p>
           </div>
-          <Link href="/contact" className="button shrink-0">
+          <ScrollGlowLink
+            href="/contact"
+            className="button cta-focus-glow shrink-0"
+          >
             Get in touch
-          </Link>
+          </ScrollGlowLink>
         </div>
       </section>
     </main>

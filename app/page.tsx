@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Card from "@/components/ui/card";
+import ScrollGlowLink from "@/components/ui/scroll-glow-link";
 import SectionHeader from "@/components/ui/section-header";
 import BlogPostCard from "@/components/public/BlogPostCard";
 import FreelanceCard from "@/components/public/FreelanceCard";
@@ -147,9 +148,12 @@ export default async function Home() {
               I can help with fast, maintainable websites and practical full-stack
               tooling. The live showcase is empty or unavailable right now.
             </p>
-            <Link href="/contact" className="button mt-5 inline-block">
+            <ScrollGlowLink
+              href="/contact"
+              className="button cta-focus-glow mt-5 inline-block"
+            >
               Start a conversation
-            </Link>
+            </ScrollGlowLink>
           </Card>
         )}
       </section>
