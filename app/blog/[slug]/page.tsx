@@ -1,30 +1,82 @@
-import Link from "next/link";
-import ReactMarkdown from "react-markdown";
-import Card from "@/components/ui/card";
-import { formatDate, publicApi } from "@/lib/api";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { BackLink, ErrorState, SiteShell } from "@/app/_components/site-shell";
+import { publicApi } from "@/app/_lib/api";
+import { formatDisplayDate, splitParagraphs } from "@/app/_lib/format";
+import { pageMetadata } from "@/app/_lib/metadata";
 
-export default async function BlogPostPage({
-  params,
-}: {
+type BlogPostProps = {
   params: Promise<{ slug: string }>;
-}) {
+};
+
+export async function generateMetadata({
+  params,
+}: BlogPostProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = await publicApi.blogPost(slug);
+  const post = await publicApi.post(slug);
+
+  if (!post.ok) {
+    return pageMetadata({
+      title: "Note not found",
+      description: "The requested note could not be found.",
+    });
+  }
+
+  return pageMetadata({
+    title: post.data.title,
+    description:
+      post.data.excerpt ||
+      "A note from Eduard Teodor on building and learning with software.",
+  });
+}
+
+export default async function BlogPostPage({ params }: BlogPostProps) {
+  const { slug } = await params;
+  const post = await publicApi.post(slug);
+
+  if (!post.ok && post.status === 404) {
+    notFound();
+  }
+
+  const publishedDate = post.ok
+    ? formatDisplayDate(post.data.publishedAt)
+    : null;
 
   return (
-    <main>
-      <Card>
-        <Link href="/blog" className="text-sm font-semibold text-teal-700">
-          Back to blog
-        </Link>
-        <h1 className="mt-4 text-4xl">{post.title}</h1>
-        <p className="mt-3 text-sm text-slate-500">
-          {formatDate(post.publishedAt ?? post.createdAt)}
-        </p>
-        <article className="prose-lite mt-8">
-          <ReactMarkdown>{post.content}</ReactMarkdown>
-        </article>
-      </Card>
-    </main>
+    <SiteShell>
+      <main className="section">
+        <div className="section-inner detail-layout detail-layout-single">
+          {post.ok ? (
+            <article className="detail-article">
+              <BackLink href="/blog" label="Back to notes" />
+              <p className="eyebrow">Note</p>
+              <h1 className="page-title">{post.data.title}</h1>
+              <div className="detail-meta-panel">
+                <div>
+                  <h2>Writing</h2>
+                  <ul className="pill-list">
+                    <li>{publishedDate || "Published note"}</li>
+                    {post.data.starred ? <li>Selected</li> : null}
+                  </ul>
+                </div>
+              </div>
+              {post.data.excerpt ? (
+                <p className="lede">{post.data.excerpt}</p>
+              ) : null}
+              <div className="prose body-copy">
+                {splitParagraphs(
+                  post.data.content,
+                  "This note is being prepared.",
+                ).map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+            </article>
+          ) : (
+            <ErrorState message={post.message} />
+          )}
+        </div>
+      </main>
+    </SiteShell>
   );
 }

@@ -1,12 +1,24 @@
 import type { Metadata } from "next";
-import Nav from "@/components/ui/nav";
+import { Geist, Geist_Mono } from "next/font/google";
+import { siteDescription } from "@/app/_lib/metadata";
 import "./globals.css";
 
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
-  title: "Eduard Teodor | Software Developer",
-  description:
-    "Portfolio, projects, writing, and freelance work by Eduard Teodor, a London-based final-year Computer Science student and software developer.",
-  metadataBase: new URL("https://eduardteodor.co.uk"),
+  title: {
+    default: "Eduard Teodor | Practical digital systems",
+    template: "%s | Eduard Teodor",
+  },
+  description: siteDescription,
 };
 
 export default function RootLayout({
@@ -15,12 +27,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body suppressHydrationWarning>
-        <div className="mx-auto flex min-h-screen w-full max-w-6xl flex-col gap-6 px-4 py-5 sm:px-6 lg:px-8">
-          <Nav />
-          {children}
-        </div>
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+    >
+      <body className="min-h-full" suppressHydrationWarning>
+        {children}
       </body>
     </html>
   );
