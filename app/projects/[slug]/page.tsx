@@ -40,9 +40,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailProps) 
   }
 
   const tools = project.ok ? splitCommaList(project.data.techStack) : [];
-  const heroImageUrl = project.ok
-    ? project.data.heroUrl || project.data.thumbnailUrl
-    : undefined;
+  const heroImageUrl = project.ok ? project.data.heroUrl : undefined;
 
   return (
     <SiteShell>
@@ -52,7 +50,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailProps) 
             <>
               <article className="detail-article">
                 <BackLink href="/projects" label="Back to projects" />
-                <p className="eyebrow">Case study</p>
+                <p className="eyebrow">Project</p>
                 <h1 className="page-title">{project.data.title}</h1>
                 {heroImageUrl ? (
                   <Image
@@ -98,14 +96,6 @@ export default async function ProjectDetailPage({ params }: ProjectDetailProps) 
                   <p>
                     {project.data.description ||
                       "This work focused on making a digital workflow clearer, more reliable, and easier to manage."}
-                  </p>
-                </section>
-                <section>
-                  <h2>Outcome</h2>
-                  <p>
-                    A more usable system with clearer content paths, practical
-                    administration, and a foundation that can be maintained
-                    after handoff.
                   </p>
                 </section>
               </article>

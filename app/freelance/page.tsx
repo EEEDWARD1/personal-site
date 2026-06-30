@@ -11,7 +11,7 @@ import { pageMetadata } from "@/app/_lib/metadata";
 export const metadata = pageMetadata({
   title: "Freelance",
   description:
-    "Focused freelance help from Eduard Teodor for websites, admin tools, dashboards, hosting setup, and workflow improvements.",
+    "Focused freelance help from Eduard Teodor.",
 });
 
 export default function FreelancePage() {
@@ -24,15 +24,13 @@ export default function FreelancePage() {
               <p className="eyebrow">Freelance</p>
               <h1 className="page-title">Focused help for practical digital work.</h1>
               <p className="lede">
-                For people and small teams who need a website, workflow, admin
-                tool, deployment path, or data process to work properly.
+                Focused freelance help from Eduard Teodor.
               </p>
             </div>
             <div className="freelance-note">
               <p>
-                I am open to freelance projects across websites, admin tools,
-                dashboards, hosting setup, and practical workflow improvements.
-                Enquire with what you need, and I will let you know honestly
+                I am open to work on your next project.
+                Enquire about what you need/want, and I will let you know honestly
                 whether it matches what I can help with.
               </p>
               <a className="button button-dark" href="/contact">

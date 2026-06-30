@@ -18,10 +18,9 @@ export default function ProjectsPage() {
   return (
     <SiteShell>
       <main className="projects-page">
-        <PageHeader eyebrow="Projects" title="Work shaped around real use.">
+        <PageHeader eyebrow="Projects" title="What I've Built.">
           <p>
-            A small collection of software and web systems, framed around what
-            they help manage, publish, automate, or make easier to run.
+            A small collection of projects, that I have built over time.
           </p>
         </PageHeader>
         <Suspense fallback={<ListingCardsSkeleton />}>

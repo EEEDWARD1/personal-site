@@ -11,17 +11,16 @@ import { pageMetadata } from "@/app/_lib/metadata";
 export const metadata = pageMetadata({
   title: "Notes",
   description:
-    "Short notes from Eduard Teodor on building, learning, and solving practical technical problems with software and web systems.",
+    "Short notes from Eduard Teodor on building, learning.",
 });
 
 export default function BlogPage() {
   return (
     <SiteShell>
       <main>
-        <PageHeader eyebrow="Notes" title="Writing on useful technical work.">
+        <PageHeader eyebrow="Writing" title="Thoughts and Ideas.">
           <p>
-            Short notes on building, learning, and solving practical problems
-            with software and web systems.
+            Short notes on building, learning, and solving practical problems.
           </p>
         </PageHeader>
         <Suspense fallback={<ListingCardsSkeleton />}>

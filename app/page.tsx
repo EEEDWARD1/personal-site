@@ -69,11 +69,11 @@ export default function Home() {
               </div>
               <div className="prose">
                 <p>
-                  I&apos;m a Computer Science Graduate who enjoys building and supporting systems. 
+                  I&apos;m a Graduate who enjoys building and supporting systems. 
                   Whether programming, designing, or handling client-facing work.
                 </p>
                 <p>
-                  I&apos;m interested in practical digital systems that help people, small businesses, and teams manage, publish, automate, or make things easier to run.
+                  I&apos;m interested in practical digital solutions that help people, publish, automate, or make things easier to run.
                 </p>
               </div>
             </div>
@@ -124,7 +124,7 @@ async function FeaturedFreelanceSection() {
         <div className="section-heading inline-heading">
           <div>
             <p className="eyebrow">Freelance</p>
-            <h2>Small builds, workflows, and improvements.</h2>
+            <h2>Featured Solutions.</h2>
           </div>
           <Link className="text-link" href="/freelance">
             See services
@@ -183,7 +183,7 @@ async function FeaturedPostsSection() {
         <div className="section-heading inline-heading">
           <div>
             <p className="eyebrow">Writing</p>
-            <h2>Notes on building and learning.</h2>
+            <h2>Thoughts and Ideas.</h2>
           </div>
           <Link className="text-link" href="/blog">
             Read notes

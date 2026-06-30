@@ -5,14 +5,13 @@ import { splitCommaList } from "@/app/_lib/format";
 
 export function ProjectCard({ project }: { project: Project }) {
   const tools = splitCommaList(project.techStack);
-  const imageUrl = project.thumbnailUrl || project.heroUrl;
 
   return (
     <Link href={`/projects/${project.slug}`} className="content-card card-link">
-      {imageUrl ? (
+      {project.thumbnailUrl ? (
         <Image
           className="card-media"
-          src={imageUrl}
+          src={project.thumbnailUrl}
           alt=""
           width={640}
           height={360}
@@ -38,14 +37,12 @@ export function ProjectCard({ project }: { project: Project }) {
 }
 
 export function FreelanceCard({ item }: { item: FreelanceProject }) {
-  const imageUrl = item.thumbnailUrl || item.heroUrl;
-
   return (
     <Link href={`/freelance/${item.slug}`} className="content-card card-link">
-      {imageUrl ? (
+      {item.thumbnailUrl ? (
         <Image
           className="card-media"
-          src={imageUrl}
+          src={item.thumbnailUrl}
           alt=""
           width={640}
           height={360}

@@ -40,9 +40,7 @@ export default async function FreelanceDetailPage({
     notFound();
   }
 
-  const heroImageUrl = item.ok
-    ? item.data.heroUrl || item.data.thumbnailUrl
-    : undefined;
+  const heroImageUrl = item.ok ? item.data.heroUrl : undefined;
 
   return (
     <SiteShell>

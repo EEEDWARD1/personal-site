@@ -38,11 +38,9 @@ export function SiteShell({ children }: { children: ReactNode }) {
       <footer className="mt-auto border-t border-zinc-200 bg-white">
         <div className="mx-auto grid max-w-6xl gap-6 px-5 py-10 text-sm text-zinc-600 md:grid-cols-[1fr_auto]">
           <p>
-            London-based recent Computer Science graduate building practical
-            digital systems for people, small businesses, and teams.
+            London-based Computer Science graduate.
           </p>
           <div className="flex flex-wrap gap-3">
-            <Link href="/admin">Admin</Link>
             <a href="mailto:hello@eduardteodor.co.uk">
               hello@eduardteodor.co.uk
             </a>
