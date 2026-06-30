@@ -40,6 +40,10 @@ const resources: Record<
       description: "",
       techStack: "",
       status: "IN_PROGRESS",
+      githubUrl: "",
+      liveUrl: "",
+      thumbnailUrl: "",
+      heroUrl: "",
       featured: false,
       published: false,
       displayOrder: 0,
@@ -55,6 +59,10 @@ const resources: Record<
       summary: "",
       description: "",
       services: [],
+      testimonial: "",
+      websiteUrl: "",
+      thumbnailUrl: "",
+      heroUrl: "",
       featured: false,
       published: false,
       displayOrder: 0,
@@ -274,7 +282,7 @@ function ResourceEditor({
   config: { label: string; path: string; blank: AdminItem };
 }) {
   const [items, setItems] = useState<AdminItem[]>([]);
-  const [selectedId, setSelectedId] = useState<number | null>(null);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
   const [draft, setDraft] = useState(() => stringify(config.blank));
   const [status, setStatus] = useState("Loading content...");
 

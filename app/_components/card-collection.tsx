@@ -28,3 +28,19 @@ export function CardCollection<T>({
 
   return <div className="card-grid">{items.map(renderItem)}</div>;
 }
+
+export function CardGridSkeleton({ count = 3 }: { count?: number }) {
+  return (
+    <div className="card-grid" aria-hidden="true">
+      {Array.from({ length: count }).map((_, index) => (
+        <div className="content-card skeleton-card" key={index}>
+          <div className="skeleton-media" />
+          <div className="skeleton-line skeleton-line-short" />
+          <div className="skeleton-line skeleton-line-title" />
+          <div className="skeleton-line" />
+          <div className="skeleton-line skeleton-line-medium" />
+        </div>
+      ))}
+    </div>
+  );
+}

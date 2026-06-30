@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { BackLink, ErrorState, SiteShell } from "@/app/_components/site-shell";
 import { publicApi } from "@/app/_lib/api";
@@ -39,6 +40,9 @@ export default async function ProjectDetailPage({ params }: ProjectDetailProps) 
   }
 
   const tools = project.ok ? splitCommaList(project.data.techStack) : [];
+  const heroImageUrl = project.ok
+    ? project.data.heroUrl || project.data.thumbnailUrl
+    : undefined;
 
   return (
     <SiteShell>
@@ -50,6 +54,17 @@ export default async function ProjectDetailPage({ params }: ProjectDetailProps) 
                 <BackLink href="/projects" label="Back to projects" />
                 <p className="eyebrow">Case study</p>
                 <h1 className="page-title">{project.data.title}</h1>
+                {heroImageUrl ? (
+                  <Image
+                    className="detail-hero-image"
+                    src={heroImageUrl}
+                    alt=""
+                    width={1600}
+                    height={700}
+                    priority
+                    unoptimized
+                  />
+                ) : null}
                 <div className="detail-meta-panel">
                   {tools.length ? (
                     <div>
@@ -79,17 +94,10 @@ export default async function ProjectDetailPage({ params }: ProjectDetailProps) 
                     "A practical system built around a clear workflow."}
                 </p>
                 <section>
-                  <h2>Problem</h2>
+                  <h2>Project brief</h2>
                   <p>
                     {project.data.description ||
                       "This work focused on making a digital workflow clearer, more reliable, and easier to manage."}
-                  </p>
-                </section>
-                <section>
-                  <h2>Solution</h2>
-                  <p>
-                    {project.data.summary ||
-                      "The solution combines a public-facing experience with maintainable structure behind the scenes."}
                   </p>
                 </section>
                 <section>

@@ -1,12 +1,20 @@
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL ?? "https://wbapi.eduardteodor.co.uk";
 
+const PUBLIC_CONTENT_REVALIDATE_SECONDS = 300;
+
+type ApiFetchInit = RequestInit & {
+  next?: {
+    revalidate?: number;
+  };
+};
+
 export type ApiState<T> =
   | { ok: true; data: T }
   | { ok: false; message: string; status?: number };
 
 export type BlogPost = {
-  id?: number;
+  id?: string;
   slug: string;
   title: string;
   content?: string;
@@ -15,10 +23,11 @@ export type BlogPost = {
   published?: boolean;
   publishedAt?: string;
   createdAt?: string;
+  updatedAt?: string;
 };
 
 export type Project = {
-  id?: number;
+  id?: string;
   slug: string;
   title: string;
   summary?: string;
@@ -26,15 +35,18 @@ export type Project = {
   techStack?: string;
   githubUrl?: string;
   liveUrl?: string;
+  thumbnailUrl?: string;
+  heroUrl?: string;
   status?: string;
   featured?: boolean;
   published?: boolean;
   displayOrder?: number;
   createdAt?: string;
+  updatedAt?: string;
 };
 
 export type FreelanceProject = {
-  id?: number;
+  id?: string;
   slug: string;
   clientName?: string;
   projectTitle: string;
@@ -44,11 +56,13 @@ export type FreelanceProject = {
   testimonial?: string;
   websiteUrl?: string;
   thumbnailUrl?: string;
+  heroUrl?: string;
   featured?: boolean;
   published?: boolean;
   completedAt?: string;
   displayOrder?: number;
   createdAt?: string;
+  updatedAt?: string;
 };
 
 export type AuthStatus =
@@ -70,7 +84,7 @@ export function getApiUrl(path: string) {
 
 export async function apiFetch<T>(
   path: string,
-  init?: RequestInit,
+  init?: ApiFetchInit,
 ): Promise<ApiState<T>> {
   try {
     const response = await fetch(getApiUrl(path), {
@@ -79,7 +93,7 @@ export async function apiFetch<T>(
         "Content-Type": "application/json",
         ...init?.headers,
       },
-      cache: "no-store",
+      next: init?.next ?? { revalidate: PUBLIC_CONTENT_REVALIDATE_SECONDS },
     });
 
     if (!response.ok) {

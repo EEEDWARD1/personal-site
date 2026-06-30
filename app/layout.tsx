@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { siteDescription } from "@/app/_lib/metadata";
+import { siteDescription, siteUrl } from "@/app/_lib/metadata";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,6 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Eduard Teodor | Practical digital systems",
     template: "%s | Eduard Teodor",

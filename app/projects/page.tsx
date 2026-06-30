@@ -1,4 +1,8 @@
-import { CardCollection } from "@/app/_components/card-collection";
+import { Suspense } from "react";
+import {
+  CardCollection,
+  CardGridSkeleton,
+} from "@/app/_components/card-collection";
 import { ProjectCard } from "@/app/_components/content-cards";
 import { PageHeader, SiteShell } from "@/app/_components/site-shell";
 import { publicApi } from "@/app/_lib/api";
@@ -10,9 +14,7 @@ export const metadata = pageMetadata({
     "Software and web projects by Eduard Teodor, focused on practical systems that manage, publish, automate, or make workflows easier to run.",
 });
 
-export default async function ProjectsPage() {
-  const projects = await publicApi.projects();
-
+export default function ProjectsPage() {
   return (
     <SiteShell>
       <main className="projects-page">
@@ -22,20 +24,40 @@ export default async function ProjectsPage() {
             they help manage, publish, automate, or make easier to run.
           </p>
         </PageHeader>
-        <section className="section pt-0">
-          <div className="section-inner">
-            <CardCollection
-              state={projects}
-              emptyTitle="No projects published yet"
-              renderItem={(project) => (
-                <ProjectCard key={project.slug} project={project} />
-              )}
-            >
-              Published work will appear here once it is added.
-            </CardCollection>
-          </div>
-        </section>
+        <Suspense fallback={<ListingCardsSkeleton />}>
+          <ProjectCards />
+        </Suspense>
       </main>
     </SiteShell>
+  );
+}
+
+async function ProjectCards() {
+  const projects = await publicApi.projects();
+
+  return (
+    <section className="section pt-0">
+      <div className="section-inner">
+        <CardCollection
+          state={projects}
+          emptyTitle="No projects published yet"
+          renderItem={(project) => (
+            <ProjectCard key={project.slug} project={project} />
+          )}
+        >
+          Published work will appear here once it is added.
+        </CardCollection>
+      </div>
+    </section>
+  );
+}
+
+function ListingCardsSkeleton() {
+  return (
+    <section className="section pt-0">
+      <div className="section-inner">
+        <CardGridSkeleton />
+      </div>
+    </section>
   );
 }

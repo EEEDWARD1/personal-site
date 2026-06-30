@@ -1,12 +1,25 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { BlogPost, FreelanceProject, Project } from "@/app/_lib/api";
 import { splitCommaList } from "@/app/_lib/format";
 
 export function ProjectCard({ project }: { project: Project }) {
   const tools = splitCommaList(project.techStack);
+  const imageUrl = project.thumbnailUrl || project.heroUrl;
 
   return (
     <Link href={`/projects/${project.slug}`} className="content-card card-link">
+      {imageUrl ? (
+        <Image
+          className="card-media"
+          src={imageUrl}
+          alt=""
+          width={640}
+          height={360}
+          loading="lazy"
+          unoptimized
+        />
+      ) : null}
       <p className="eyebrow">{project.status || "Project"}</p>
       <h3>{project.title}</h3>
       <p>
@@ -25,8 +38,21 @@ export function ProjectCard({ project }: { project: Project }) {
 }
 
 export function FreelanceCard({ item }: { item: FreelanceProject }) {
+  const imageUrl = item.thumbnailUrl || item.heroUrl;
+
   return (
     <Link href={`/freelance/${item.slug}`} className="content-card card-link">
+      {imageUrl ? (
+        <Image
+          className="card-media"
+          src={imageUrl}
+          alt=""
+          width={640}
+          height={360}
+          loading="lazy"
+          unoptimized
+        />
+      ) : null}
       <p className="eyebrow">{item.clientName || "Client work"}</p>
       <h3>{item.projectTitle}</h3>
       <p>{item.summary || "Practical help with a focused digital build."}</p>

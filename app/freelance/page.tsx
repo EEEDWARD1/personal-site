@@ -1,4 +1,8 @@
-import { CardCollection } from "@/app/_components/card-collection";
+import { Suspense } from "react";
+import {
+  CardCollection,
+  CardGridSkeleton,
+} from "@/app/_components/card-collection";
 import { FreelanceCard } from "@/app/_components/content-cards";
 import { SiteShell } from "@/app/_components/site-shell";
 import { publicApi } from "@/app/_lib/api";
@@ -10,9 +14,7 @@ export const metadata = pageMetadata({
     "Focused freelance help from Eduard Teodor for websites, admin tools, dashboards, hosting setup, and workflow improvements.",
 });
 
-export default async function FreelancePage() {
-  const items = await publicApi.freelance();
-
+export default function FreelancePage() {
   return (
     <SiteShell>
       <main>
@@ -39,24 +41,46 @@ export default async function FreelancePage() {
             </div>
           </div>
         </section>
-        <section className="section muted">
-          <div className="section-inner">
-            <div className="section-heading">
-              <p className="eyebrow">Examples</p>
-              <h2>Published freelance work.</h2>
-            </div>
-            <CardCollection
-              state={items}
-              emptyTitle="No examples published yet"
-              renderItem={(item) => (
-                <FreelanceCard key={item.slug} item={item} />
-              )}
-            >
-              Freelance examples will appear here when they are available.
-            </CardCollection>
-          </div>
-        </section>
+        <Suspense fallback={<FreelanceCardsSkeleton />}>
+          <FreelanceCards />
+        </Suspense>
       </main>
     </SiteShell>
+  );
+}
+
+async function FreelanceCards() {
+  const items = await publicApi.freelance();
+
+  return (
+    <section className="section muted">
+      <div className="section-inner">
+        <div className="section-heading">
+          <p className="eyebrow">Examples</p>
+          <h2>Published freelance work.</h2>
+        </div>
+        <CardCollection
+          state={items}
+          emptyTitle="No examples published yet"
+          renderItem={(item) => <FreelanceCard key={item.slug} item={item} />}
+        >
+          Freelance examples will appear here when they are available.
+        </CardCollection>
+      </div>
+    </section>
+  );
+}
+
+function FreelanceCardsSkeleton() {
+  return (
+    <section className="section muted">
+      <div className="section-inner">
+        <div className="section-heading" aria-hidden="true">
+          <div className="skeleton-line skeleton-line-short" />
+          <div className="skeleton-line skeleton-line-heading" />
+        </div>
+        <CardGridSkeleton />
+      </div>
+    </section>
   );
 }

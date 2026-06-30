@@ -1,6 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CardCollection } from "@/app/_components/card-collection";
+import { Suspense } from "react";
+import {
+  CardCollection,
+  CardGridSkeleton,
+} from "@/app/_components/card-collection";
 import {
   FreelanceCard,
   PostCard,
@@ -16,13 +20,7 @@ export const metadata = pageMetadata({
     "Eduard Teodor is a London-based Computer Science graduate looking for work and building practical websites, admin tools, workflows, and software projects.",
 });
 
-export default async function Home() {
-  const [projects, freelance, posts] = await Promise.all([
-    publicApi.projects(true),
-    publicApi.freelance(true),
-    publicApi.posts(true),
-  ]);
-
+export default function Home() {
   return (
     <SiteShell>
       <main>
@@ -82,76 +80,17 @@ export default async function Home() {
           </div>
         </section>
 
-        <section className="section section-compact">
-          <div className="section-inner">
-            <div className="section-heading inline-heading">
-              <div>
-                <p className="eyebrow">Freelance</p>
-                <h2>Small builds, workflows, and improvements.</h2>
-              </div>
-              <Link className="text-link" href="/freelance">
-                See services
-              </Link>
-            </div>
-            <CardCollection
-              state={freelance}
-              limit={3}
-              emptyTitle="No freelance examples yet"
-              renderItem={(item) => (
-                <FreelanceCard key={item.slug} item={item} />
-              )}
-            >
-              Featured client work will appear here when it is published.
-            </CardCollection>
-          </div>
-        </section>
+        <Suspense fallback={<HomeSectionSkeleton tone="light" />}>
+          <FeaturedFreelanceSection />
+        </Suspense>
 
-        <section className="section section-compact muted">
-          <div className="section-inner">
-            <div className="section-heading inline-heading">
-              <div>
-                <p className="eyebrow">Personal Work</p>
-                <h2>Projects</h2>
-              </div>
-              <Link className="text-link" href="/projects">
-                View all projects
-              </Link>
-            </div>
-            <CardCollection
-              state={projects}
-              limit={3}
-              emptyTitle="No featured projects yet"
-              renderItem={(project) => (
-                <ProjectCard key={project.slug} project={project} />
-              )}
-            >
-              Published featured projects will appear here once they are added
-              in the admin area.
-            </CardCollection>
-          </div>
-        </section>
+        <Suspense fallback={<HomeSectionSkeleton tone="muted" />}>
+          <FeaturedProjectsSection />
+        </Suspense>
 
-        <section className="section">
-          <div className="section-inner">
-            <div className="section-heading inline-heading">
-              <div>
-                <p className="eyebrow">Writing</p>
-                <h2>Notes on building and learning.</h2>
-              </div>
-              <Link className="text-link" href="/blog">
-                Read notes
-              </Link>
-            </div>
-            <CardCollection
-              state={posts}
-              limit={3}
-              emptyTitle="No notes published yet"
-              renderItem={(post) => <PostCard key={post.slug} post={post} />}
-            >
-              Starred notes will appear here once they are available.
-            </CardCollection>
-          </div>
-        </section>
+        <Suspense fallback={<HomeSectionSkeleton tone="light" />}>
+          <FeaturedPostsSection />
+        </Suspense>
 
         <section className="section cta-section muted">
           <div className="section-inner">
@@ -173,5 +112,112 @@ export default async function Home() {
         </section>
       </main>
     </SiteShell>
+  );
+}
+
+async function FeaturedFreelanceSection() {
+  const freelance = await publicApi.freelance(true);
+
+  return (
+    <section className="section section-compact">
+      <div className="section-inner">
+        <div className="section-heading inline-heading">
+          <div>
+            <p className="eyebrow">Freelance</p>
+            <h2>Small builds, workflows, and improvements.</h2>
+          </div>
+          <Link className="text-link" href="/freelance">
+            See services
+          </Link>
+        </div>
+        <CardCollection
+          state={freelance}
+          limit={3}
+          emptyTitle="No freelance examples yet"
+          renderItem={(item) => <FreelanceCard key={item.slug} item={item} />}
+        >
+          Featured client work will appear here when it is published.
+        </CardCollection>
+      </div>
+    </section>
+  );
+}
+
+async function FeaturedProjectsSection() {
+  const projects = await publicApi.projects(true);
+
+  return (
+    <section className="section section-compact muted">
+      <div className="section-inner">
+        <div className="section-heading inline-heading">
+          <div>
+            <p className="eyebrow">Personal Work</p>
+            <h2>Projects</h2>
+          </div>
+          <Link className="text-link" href="/projects">
+            View all projects
+          </Link>
+        </div>
+        <CardCollection
+          state={projects}
+          limit={3}
+          emptyTitle="No featured projects yet"
+          renderItem={(project) => (
+            <ProjectCard key={project.slug} project={project} />
+          )}
+        >
+          Published featured projects will appear here once they are added in
+          the admin area.
+        </CardCollection>
+      </div>
+    </section>
+  );
+}
+
+async function FeaturedPostsSection() {
+  const posts = await publicApi.posts(true);
+
+  return (
+    <section className="section">
+      <div className="section-inner">
+        <div className="section-heading inline-heading">
+          <div>
+            <p className="eyebrow">Writing</p>
+            <h2>Notes on building and learning.</h2>
+          </div>
+          <Link className="text-link" href="/blog">
+            Read notes
+          </Link>
+        </div>
+        <CardCollection
+          state={posts}
+          limit={3}
+          emptyTitle="No notes published yet"
+          renderItem={(post) => <PostCard key={post.slug} post={post} />}
+        >
+          Starred notes will appear here once they are available.
+        </CardCollection>
+      </div>
+    </section>
+  );
+}
+
+function HomeSectionSkeleton({ tone }: { tone: "light" | "muted" }) {
+  return (
+    <section
+      className={
+        tone === "muted" ? "section section-compact muted" : "section section-compact"
+      }
+    >
+      <div className="section-inner">
+        <div className="section-heading inline-heading" aria-hidden="true">
+          <div>
+            <div className="skeleton-line skeleton-line-short" />
+            <div className="skeleton-line skeleton-line-heading" />
+          </div>
+        </div>
+        <CardGridSkeleton />
+      </div>
+    </section>
   );
 }
