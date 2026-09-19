@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import ArrowIcon from "../../components/ArrowIcon";
 import Navigation from "../../components/Navigation";
 import Footer from "../../components/Footer";
 
@@ -12,14 +13,9 @@ export default function FreelancePage() {
   return (
     <>
       <Navigation />
-      <main className="space-y-12 pb-12 pt-4 [&_p]:font-normal! [&_p]:leading-relaxed [&_h2]:font-bold! [&_h3]:font-semibold!">
+      <main className="space-y-12 py-10 sm:py-12">
 
         <section aria-labelledby="freelance-heading">
-          <div aria-hidden="true" className="mb-8 grid h-2 grid-cols-5">
-          </div>
-          <span className="mb-6 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest">
-            <span aria-hidden="true" className="size-2 bg-[#FB5607]" /> Independent developer
-          </span>
           <h1 id="freelance-heading" className="max-w-lg text-4xl! leading-[1.08] tracking-tight sm:text-5xl!">
             Small ideas.<br />
             <span className="text-[#3A86FF]">Real possibilities.</span>
@@ -28,8 +24,8 @@ export default function FreelancePage() {
             I&apos;m Ed. I turn ideas into useful websites and software, with your
             goals at the heart of every decision.
           </p>
-          <a href="#start-project" className="mt-8 inline-flex min-h-12 items-center gap-6 border-2 border-[#4E4B5C] bg-[#FFBE0B] px-5 py-3 font-medium text-[#0a0a0a] shadow-[4px_4px_0_#4E4B5C] hover:bg-[#FB5607] hover:text-[#0a0a0a] hover:no-underline focus-visible:outline-2 focus-visible:outline-offset-4">
-            Let&apos;s talk about your idea <span aria-hidden="true">↗</span>
+          <a href="#start-project" className="block-button mt-8">
+            Let&apos;s talk about your idea <ArrowIcon />
           </a>
           <div className="mt-10 flex flex-wrap gap-2" aria-label="Technologies I work with">
             {["Next.js", "ASP.NET Core", "Python"].map((technology) => (
@@ -41,7 +37,6 @@ export default function FreelancePage() {
         <section aria-labelledby="services-heading">
           <div className="mb-6 flex items-baseline justify-between gap-4">
             <h2 id="services-heading" className="tracking-tight">What can we build?</h2>
-            <span aria-hidden="true" className="font-mono text-xs text-foreground/50">01 / IDEAS</span>
           </div>
           <div className="grid gap-4 sm:grid-cols-3">
             {[
@@ -61,7 +56,6 @@ export default function FreelancePage() {
         <section aria-labelledby="process-heading">
           <div className="mb-6 flex items-baseline justify-between gap-4">
             <h2 id="process-heading" className="tracking-tight">A conversation first.</h2>
-            <span aria-hidden="true" className="font-mono text-xs text-foreground/50">02 / PROCESS</span>
           </div>
           <ol className="divide-y divide-[#4E4B5C]/40 border-y border-[#4E4B5C]/40 dark:divide-white/25 dark:border-white/25">
             {[
@@ -78,11 +72,10 @@ export default function FreelancePage() {
         </section>
 
         <section id="start-project" className="scroll-mt-8 border-l-8 border-[#802392] bg-[#FFBE0B] p-6 text-[#0a0a0a] sm:p-8" aria-labelledby="project-heading">
-          <span className="font-mono text-xs tracking-widest">03 / YOUR NEXT IDEA</span>
-          <h2 id="project-heading" className="mt-5 text-3xl! leading-tight tracking-tight sm:text-4xl!">Have something in mind?</h2>
+          <h2 id="project-heading" className="text-3xl! leading-tight tracking-tight sm:text-4xl!">Have something in mind?</h2>
           <p className="mt-4 max-w-lg text-base!">A rough idea is a good place to start. Send me a little about your project, timeline, and budget, and we can see if we&apos;re a good fit.</p>
           <a href="mailto:ed@eduardteodor.co.uk?subject=Freelance%20project" className="mt-6 inline-flex min-h-12 items-center gap-6 border-2 border-[#4E4B5C] bg-[#4E4B5C] px-6 py-3 text-white hover:bg-[#802392] hover:text-white hover:no-underline focus-visible:outline-2 focus-visible:outline-offset-4">
-            Say hello <span aria-hidden="true">↗</span>
+            Say hello <ArrowIcon />
           </a>
           <p className="mt-4 text-sm!">I take on freelance projects from time to time.</p>
         </section>
