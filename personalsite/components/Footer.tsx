@@ -1,8 +1,8 @@
 export default function Footer() {
     return (
-        <footer className="flex flex-col item-center">
-            <h1>Wanna get in touch?</h1>
-            <p>I am always available for exciting discussions</p>
+        <footer className="mb-6 flex flex-col items-start gap-3 border border-line border-l-4 border-l-orange bg-foreground/[0.03] p-5 sm:p-8">
+            <h2>Wanna get in touch?</h2>
+            <p>I am always available for exciting discussions!</p>
             <a href="mailto:ed@eduardteodor.co.uk" className="inline-flex w-fit items-center gap-2 text-foreground hover:text-foreground">
                 <svg className="size-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
                     <rect x="3" y="5" width="18" height="14" rx="2" />
@@ -17,6 +17,9 @@ export default function Footer() {
                 </svg>
                 <span>London, United Kingdom</span>
             </a>
+            <p className="mt-3 w-full border-t border-line pt-4 text-sm text-foreground/60">
+                &copy; {new Date().getFullYear()} Eduard Teodor. All rights reserved.
+            </p>
         </footer>
     )
 }
