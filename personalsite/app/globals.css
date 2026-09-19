@@ -5,6 +5,7 @@
   --foreground: #0a0a0a;
   --link: #FB5607;
   --link-hover: #FFBE0B;
+  --line: #4E4B5C66;
 }
 
 @theme inline {
@@ -12,6 +13,12 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-sun: #FFBE0B;
+  --color-orange: #FB5607;
+  --color-slate: #4E4B5C;
+  --color-purple: #802392;
+  --color-blue: #3A86FF;
+  --color-line: var(--line);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -20,36 +27,44 @@
     --foreground: #f5f5f5;
     --link: #FFBE0B;
     --link-hover: #FB5607;
+    --line: #ffffff40;
   }
 }
 
+@layer base {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: sans-serif;
+  font-family: var(--font-geist-sans), sans-serif;
 }
 
 h1 {
-  font-size: xx-large;
+  font-size: clamp(2.25rem, 6vw, 3rem);
   font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
 }
 
 h2 {
-  font-size: x-large;
-  font-weight: 400;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
 }
 
 h3 {
-  font-size: large;
-  font-weight: 200;
+  font-size: 1.125rem;
+  font-weight: 600;
 }
 
 p {
-  font-size: large;
-  font-weight: 100;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.75;
 }
-
-@layer base {
+  a:focus-visible {
+    outline: 2px solid var(--color-blue);
+    outline-offset: 4px;
+  }
   a {
     color: var(--link);
     font-weight: 400;
@@ -60,5 +75,32 @@ p {
     color: var(--link-hover);
     text-decoration: underline;
     text-underline-offset: 3px;
+  }
+}
+
+@layer components {
+  .block-panel {
+    border: 1px solid var(--line);
+    padding: clamp(1.25rem, 4vw, 2rem);
+  }
+
+  .block-button {
+    display: inline-flex;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    border: 2px solid var(--color-slate);
+    padding: 0.75rem 1.25rem;
+    background: var(--color-sun);
+    color: #0a0a0a;
+    font-weight: 500;
+    box-shadow: 4px 4px 0 var(--color-slate);
+  }
+
+  .block-button:hover {
+    background: var(--color-orange);
+    color: #0a0a0a;
+    text-decoration: none;
   }
 }

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Footer from "../components/Footer";
 import Navigation from "../components/Navigation";
 import Banner from "../components/Banner";
@@ -9,9 +8,13 @@ export default function Home() {
   return (
     <>
     <Navigation />
-    <Banner />
-    <Projects />
-    <Thoughts />
+    <main className="space-y-12 py-10 sm:py-12">
+      <Banner />
+      <div className="grid grid-cols-1 gap-5">
+        <Projects />
+        <Thoughts />
+      </div>
+    </main>
     <Footer />
     </>
   );
