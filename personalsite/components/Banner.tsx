@@ -2,10 +2,10 @@ import Link from 'next/link';
 
 export default function Banner() {
   return (
-    <section className="space-y-5" aria-labelledby="intro-heading">
+    <section className="space-y-5 [&_p]:text-foreground/75" aria-labelledby="intro-heading">
       <h1 id="intro-heading"><span className="text-blue">Hi</span>, I&apos;m <Link href="/" className="font-extrabold text-inherit hover:text-inherit">Ed.</Link></h1>
       <p>I live in <Link href="https://www.google.com/search?q=london">London, United Kingdom</Link> and I am a recent First Class Computer Science graduate from <Link href="https://www.citystgeorges.ac.uk/">City St Georges, University of London</Link>.</p>
-      <p>I love programming and building thoughtful solutions that put clients first. I also take on <Link href="/freelance">freelance projects</Link> from time to time.</p>
+      <p>I love programming and building thoughtful Client First Solutions. I also take on <Link href="/freelance">freelance projects</Link> from time to time.</p>
       <p>Currently I have been loving <Link href="https://dotnet.microsoft.com/en-us/apps/aspnet">asp.Net Core</Link>, <Link href="https://nextjs.org/">Next.js</Link> and <Link href="https://www.python.org/">Python</Link>.</p>
       {/* Bootstrap Icons (MIT); see THIRD_PARTY_NOTICES.md. */}
       <div className="flex items-center gap-3 border-y border-line py-4 [&_a]:border [&_a]:border-line">

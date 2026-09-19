@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Eduard Teodor | Developer",
+  title: "Eduard Teodor",
   description: "Personal website of Eduard Teodor, a developer based in London.",
 };
 
