@@ -2,9 +2,11 @@ import Link from 'next/link';
 
 export default function Banner() {
   return (
-    <>
-      <h1><span className="text-[#3A86FF]">Hi</span>, I'm <Link href="/" className="font-extrabold text-inherit hover:text-inherit">Ed</Link></h1>
-      <p>I live in <Link href="https://www.google.com/search?q=london">London</Link> and I am a recent First Class Computer Science graduate from <Link href="https://www.citystgeorges.ac.uk/">City St Georges, University of London</Link>. Lover of all things programming and providing client first solutions.</p>
+    <div>
+      <h1><span className="text-[#3A86FF]">Hi</span>, I'm <Link href="/" className="font-extrabold text-inherit hover:text-inherit">Ed.</Link></h1>
+      <p>I live in <Link href="https://www.google.com/search?q=london">London, United Kingdom</Link> and I am a recent First Class Computer Science graduate from <Link href="https://www.citystgeorges.ac.uk/">City St Georges, University of London</Link>.</p>
+      <p>I love programming and building thoughtful solutions that put clients first.</p>
+      <p>I also take on <Link href="/freelance">freelance projects</Link> from time to time.</p>
       <br></br>
       <p>Currently I have been loving <Link href="https://dotnet.microsoft.com/en-us/apps/aspnet">asp.Net Core</Link>, <Link href="https://nextjs.org/">Next.js</Link> and <Link href="https://www.python.org/">Python</Link>.</p>
       {/* Bootstrap Icons (MIT); see THIRD_PARTY_NOTICES.md. */}
@@ -20,6 +22,6 @@ export default function Banner() {
           </svg>
         </Link>
       </div>
-    </>
+    </div>
   );
 }
