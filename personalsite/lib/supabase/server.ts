@@ -6,11 +6,13 @@ import type { Database } from "@/lib/content-types";
 import { authCookieOptions, supabaseConfig } from "./config";
 
 // Public pages never inherit the administrator's cookies or draft access.
+// Fetches are left uncached here so route segment config decides freshness:
+// force-dynamic routes (detail pages) still get every request live, while
+// the homepage's `revalidate` window can actually cache this data.
 export function publicSupabase() {
   const { url, key } = supabaseConfig();
   return createClient<Database>(url, key, {
     auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false },
-    global: { fetch: (input, init) => fetch(input, { ...init, cache: "no-store" }) },
   });
 }
 

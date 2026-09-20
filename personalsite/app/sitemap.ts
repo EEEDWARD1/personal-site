@@ -3,6 +3,10 @@ import { siteUrl } from "@/lib/site";
 import { listPublished } from "@/lib/public-content";
 import type { ContentKind, ContentRow } from "@/lib/content-types";
 
+// Revalidated hourly: crawlers don't need per-request freshness, and this
+// avoids a live Supabase round-trip on every crawl.
+export const revalidate = 3600;
+
 async function entriesFor(kind: ContentKind): Promise<MetadataRoute.Sitemap> {
   let rows: ContentRow[];
   try { rows = await listPublished(kind); }
