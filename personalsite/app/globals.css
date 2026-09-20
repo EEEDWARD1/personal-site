@@ -32,6 +32,10 @@
 }
 
 @layer base {
+html {
+  font-size: 112.5%;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -79,6 +83,37 @@ p {
 }
 
 @layer components {
+  .editor-input {
+    display: block;
+    width: 100%;
+    margin-top: 0.5rem;
+    border: 1px solid var(--line);
+    background: var(--background);
+    padding: 0.75rem;
+    color: var(--foreground);
+  }
+
+  .editor-input:focus-visible {
+    outline: 2px solid var(--color-blue);
+    outline-offset: 2px;
+  }
+
+  button:disabled { opacity: 0.6; cursor: wait; }
+
+  .markdown-body { overflow-wrap: anywhere; line-height: 1.75; }
+  .markdown-body > * + * { margin-top: 1.25rem; }
+  .markdown-body h1, .markdown-body h2, .markdown-body h3 { margin-top: 2rem; }
+  .markdown-body ul { list-style: disc; padding-left: 1.5rem; }
+  .markdown-body ol { list-style: decimal; padding-left: 1.5rem; }
+  .markdown-body li + li { margin-top: 0.4rem; }
+  .markdown-body blockquote { border-left: 4px solid var(--color-purple); padding-left: 1rem; }
+  .markdown-body pre { overflow-x: auto; border: 1px solid var(--line); padding: 1rem; }
+  .markdown-body code { font-family: var(--font-geist-mono), monospace; font-size: 0.875em; }
+  .markdown-body img { max-width: 100%; height: auto; }
+  .markdown-body table { display: block; max-width: 100%; overflow-x: auto; border-collapse: collapse; }
+  .markdown-body th, .markdown-body td { border: 1px solid var(--line); padding: 0.5rem 0.75rem; }
+  .markdown-body hr { border-color: var(--line); }
+
   .block-panel {
     border: 1px solid var(--line);
     padding: clamp(1.25rem, 4vw, 2rem);

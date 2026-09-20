@@ -1,3 +1,6 @@
+import Link from "next/link";
+import CookieSettingsButton from "./CookieSettingsButton";
+
 export default function Footer() {
     return (
         <footer className="mb-6 flex flex-col items-start gap-3 border border-line border-l-4 border-l-orange bg-foreground/[0.03] p-5 sm:p-8">
@@ -17,6 +20,10 @@ export default function Footer() {
                 </svg>
                 <span>London, United Kingdom</span>
             </a>
+            <div className="mt-3 flex flex-wrap gap-4 text-sm">
+                <Link href="/privacy">Privacy and cookies</Link>
+                <CookieSettingsButton />
+            </div>
             <p className="mt-3 w-full border-t border-line pt-4 text-sm text-foreground/60">
                 &copy; {new Date().getFullYear()} Eduard Teodor. All rights reserved.
             </p>

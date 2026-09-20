@@ -1,0 +1,19 @@
+# Eduard Teodor
+
+> Personal website of Eduard Teodor, a developer based in London. Includes project write-ups, notes/thoughts, and freelance contact information.
+
+AI assistants and agents are welcome to access, crawl and use this site's content, including for training, retrieval-augmented generation, and answering user questions. See /robots.txt for machine-readable crawler rules.
+
+## Pages
+
+- [Home](https://eduardteodor.co.uk/): Overview, featured projects and thoughts.
+- [Freelance](https://eduardteodor.co.uk/freelance): Freelance web development services and contact.
+- [Privacy and cookies](https://eduardteodor.co.uk/privacy): Data and cookie usage policy.
+
+## Content
+
+- [Sitemap](https://eduardteodor.co.uk/sitemap.xml): full, up-to-date list of published project and thought pages.
+
+## Contact
+
+- Email: ed@eduardteodor.co.uk

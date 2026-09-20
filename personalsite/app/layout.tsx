@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import ClarityAnalytics from "@/components/ClarityAnalytics";
+import { siteUrl } from "@/lib/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,6 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Eduard Teodor",
   description: "Personal website of Eduard Teodor, a developer based in London.",
 };
@@ -24,7 +27,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full">
-        <div className="mx-auto min-h-screen w-full max-w-[210mm] px-5 py-4 sm:px-8">
+        <ClarityAnalytics />
+        <div className="mx-auto min-h-screen w-full max-w-[250mm] px-5 py-4 sm:px-8">
           {children}
         </div>
       </body>

@@ -8,6 +8,9 @@ const localAddresses = Object.values(networkInterfaces())
 
 const nextConfig: NextConfig = {
   allowedDevOrigins: localAddresses,
+  experimental: {
+    serverActions: { bodySizeLimit: "3mb" },
+  },
 };
 
 export default nextConfig;

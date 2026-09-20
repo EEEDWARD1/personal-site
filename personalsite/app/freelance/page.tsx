@@ -27,11 +27,6 @@ export default function FreelancePage() {
           <a href="#start-project" className="block-button mt-8">
             Let&apos;s talk about your idea <ArrowIcon />
           </a>
-          <div className="mt-10 flex flex-wrap gap-2" aria-label="Technologies I work with">
-            {["Next.js", "ASP.NET Core", "Python"].map((technology) => (
-              <span key={technology} className="border border-[#4E4B5C]/40 px-3 py-1.5 font-mono text-xs text-foreground/70 dark:border-white/25">{technology}</span>
-            ))}
-          </div>
         </section>
 
         <section aria-labelledby="services-heading">
